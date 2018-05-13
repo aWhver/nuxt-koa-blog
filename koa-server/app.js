@@ -5,6 +5,7 @@ const port = process.env.PORT || 3001
 const host = process.env.HOST || 'localhost'
 
 const app = new Koa()
+require('./mysql')
 middleware(app)
 router(app)
 

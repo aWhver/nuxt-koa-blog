@@ -18,8 +18,11 @@ const User = sequelize.define('user', {
     type: Sequelize.STRING,
     allowNull: false
   }
+}, {
+  freezeTableName: true,
+  charset: 'utf8mb4'
 })
 
-User.sync({force: true}) // force为true 如果该表已创建，先删除此表再创建
+User.sync({force: false}) // force为true 如果该表已创建，先删除此表再创建
 
 module.exports = User

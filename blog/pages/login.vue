@@ -2,23 +2,41 @@
   <div class="login">
     <div class="login-container">
       <h2>Welcome login admin</h2>
-      <el-form>
+      <el-form :form="loginForm">
          <el-form-item>
-          <el-input placeholder="please enter your account"></el-input>
+          <el-input v-model="loginForm.user" placeholder="please enter your account"></el-input>
          </el-form-item>
          <el-form-item>
-           <el-input placeholder="please enter your password"></el-input>
+           <el-input v-model="loginForm.password" placeholder="please enter your password" type="password"></el-input>
          </el-form-item>
          <el-form-item>
-           <el-button type="primary" style="width: 100%;letter-spacing: 2px" >Login</el-button>
+           <el-button @click="login" type="primary" style="width: 100%;letter-spacing: 2px" >Login</el-button>
          </el-form-item>
       </el-form>
     </div>
   </div>
 </template>
 <script type="text/javascript">
+  import login from 'api/login'
   export default {
-    data () {}
+    data () {
+      return {
+        loginForm: {
+          user: '',
+          password: ''
+        }
+      }
+    },
+    methods: {
+      login () {
+        const that = this
+       login('/login',that.loginForm).then(response => {
+          console.log(response)
+        }).catch(err => {
+          console.log('err' + err)
+        })
+      }
+    }
   }
 </script>
 <style lang="scss" scoped>

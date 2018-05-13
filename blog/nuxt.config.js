@@ -1,3 +1,4 @@
+const path = require('path')
 module.exports = {
   /*
   ** Headers of the page
@@ -28,6 +29,7 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
+    vendor: ['~/plugins/request.js'],
     extend (config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
@@ -36,10 +38,13 @@ module.exports = {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
+        Object.assign(config.resolve.alias, {
+          'api': path.resolve(__dirname, 'api')
+        })
       }
     }
   },
-  plugins: ['~plugins/element'],
+  plugins: ['~/plugins/element'],
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/proxy'
@@ -48,8 +53,8 @@ module.exports = {
     [
       '/api',
       {
-        target: `${process.env.HOST || 'localhost'}:${process.env.PORT || 3001}`,
-        pathRewrite: { '^/api': '/' }
+        target: `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3001}`,
+        pathRewrite: { '^/api': '/api' }
       }
     ]
   ]

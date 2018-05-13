@@ -22,7 +22,7 @@ module.exports = () => {
       }
     }
   }
-  return (ctx, next) => {
+  return async (ctx, next) => {
     ctx.send = render(ctx)
     ctx.sendError = renderError(ctx)
     await next()

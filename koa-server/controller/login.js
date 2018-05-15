@@ -3,12 +3,20 @@
  */
 const User = require('../model/user')
 
-const login = (params) => {
+const login = params => {
+  return User.findone({
+    where: {
+      user: params.user
+    }
+  })
+}
+
+/*const register = (params) => {
   return User.create({
     user: params.user,
     password: params.password
   })
-}
+}*/
 
 
 module.exports = login

@@ -1,4 +1,3 @@
-const path = require('path')
 module.exports = {
   /*
   ** Headers of the page
@@ -37,9 +36,6 @@ module.exports = {
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules)/
-        })
-        Object.assign(config.resolve.alias, {
-          'api': path.resolve(__dirname, 'api')
         })
       }
     }

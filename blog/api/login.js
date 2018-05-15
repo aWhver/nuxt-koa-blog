@@ -3,7 +3,7 @@
  */
 import request from '../plugins/request'
 
-export default (url, params) {
+export default (url, params) => {
   return request({
     url: url,
     method: 'post',

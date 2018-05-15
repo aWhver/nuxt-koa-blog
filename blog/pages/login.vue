@@ -17,7 +17,7 @@
   </div>
 </template>
 <script type="text/javascript">
-  import login from 'api/login'
+  import login from '~/api/login'
   export default {
     data () {
       return {
@@ -29,12 +29,7 @@
     },
     methods: {
       login () {
-        const that = this
-       login('/login',that.loginForm).then(response => {
-          console.log(response)
-        }).catch(err => {
-          console.log('err' + err)
-        })
+        this.$store.dispatch('LOGIN', this.loginForm)
       }
     }
   }
@@ -53,6 +48,11 @@
     width: 260px;
     input {
       caret-color: #409EFF;
+    }
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+      -webkit-text-fill-color: #000 !important;
+      background-color: #fff;
     }
   }
 }

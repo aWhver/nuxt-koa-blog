@@ -17,7 +17,7 @@ module.exports = () => {
     return message => {
       ctx.response.body = {
         code: 0,
-        data: json || {},
+        data: {},
         message: message
       }
     }

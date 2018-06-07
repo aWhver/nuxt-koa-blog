@@ -2,30 +2,31 @@
  * Created by juntong on 2018/5/15.
  */
 import login from '~/api/login'
-const state = {
+export const state = {
   authUser: null
 }
 
-const mutations = {
+export const mutations = {
   SET_USER: (state, user) => {
     state.authUser = user
   }
 }
 
-const actions = {
+export const actions = {
   nuxtServerInit({ commit }, ctx) {
-    const nowDate = +new Date()
-    if (!ctx.cookies.get('token')) { //token过期
+    console.log(ctx.cookies + 'ds')
+    /*if (!ctx.cookies.get('token')) { //token过期
       commit('SET_USER', null)
     } else {
       commit('SET_USER', ctx.cookies.get('token'))
-    }
+    }*/
   },
   async LOGIN({ commit }, { user, password }) {
     try {
-      const { data } = await login('/login', { user, password })
-      commit('SET_USER', data.token)
-      localStorage.setItem('AUTH_TOKEN', data.token)
+      const data = await login(user, password)
+      console.log(data)
+      //commit('SET_USER', data.token)
+      // localStorage.setItem('AUTH_TOKEN', data.token)
     } catch (error) {
       if (error.response && error.response.status === 401) {
         throw new Error('Bad credentials')
@@ -39,9 +40,3 @@ const actions = {
   }
 }
 
-
-export default {
-  state,
-  mutations,
-  actions
-}

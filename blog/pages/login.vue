@@ -30,6 +30,9 @@
     methods: {
       login () {
         this.$store.dispatch('LOGIN', this.loginForm)
+//        login(this.loginForm.user, this.loginForm.password).then(res => {
+//          console.log(res)
+//        })
       }
     }
   }

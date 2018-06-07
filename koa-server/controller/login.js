@@ -4,7 +4,7 @@
 const User = require('../model/user')
 
 const login = params => {
-  return User.findone({
+  return User.findOne({
     where: {
       user: params.user
     }

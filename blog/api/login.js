@@ -3,10 +3,13 @@
  */
 import request from '../plugins/request'
 
-export default (url, params) => {
+export default (user, password) => {
   return request({
-    url: url,
+    url: '/login',
     method: 'post',
-    params: params
+    data: {
+      user: user,
+      password: password
+    }
   })
 }
